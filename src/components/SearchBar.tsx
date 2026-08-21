@@ -39,7 +39,7 @@ export function SearchBar() {
           type="text"
           value={localValue}
           onChange={handleChange}
-          placeholder="SEARCH FOR YOUR NEXT GAME..."
+          placeholder="Search for your next favorite game..."
           className="w-full pl-12 pr-12 py-3.5 bg-screen-dark border border-border rounded-lg font-pixel text-[10px] md:text-xs text-foreground placeholder:text-muted-foreground focus:border-cyan focus:ring-1 focus:ring-cyan/30 outline-none transition-colors"
         />
         {localValue && (

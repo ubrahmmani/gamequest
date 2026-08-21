@@ -11,10 +11,10 @@ export function EmptyState() {
       )}
       <div className="text-center">
         <h3 className="font-pixel text-sm text-foreground text-crt-shift mb-2">
-          NO LOOT FOUND
+          NO DEALS FOUND
         </h3>
         <p className="text-sm text-muted-foreground">
-          The loot is hiding. Try adjusting your filters or search.
+          Looks like there's nothing matching your search. Try adjusting your filters or starting fresh.
         </p>
       </div>
       <button

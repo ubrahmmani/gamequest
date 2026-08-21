@@ -45,7 +45,7 @@ export default function SettingsPage() {
           SETTINGS
         </h1>
         <p className="text-sm text-muted-foreground mt-2">
-          Customize your GameQuest experience
+          Tweak the look and feel of DealQuest to your liking
         </p>
       </div>
 
@@ -118,11 +118,10 @@ export default function SettingsPage() {
           ABOUT
         </h2>
         <div className="bg-screen-dark border border-border rounded-lg p-5">
-          <p className="font-pixel text-sm text-cyan mb-2">GAMEQUEST</p>
+          <p className="font-pixel text-sm text-cyan mb-2">DealQuest</p>
           <p className="text-xs text-muted-foreground leading-relaxed">
-            Find your next game. Hunt the best deal. GameQuest combines
-            regional price discovery with gamified deal hunting to help you
-            find the best game prices across the world.
+            DealQuest helps you find the best game deals in your region, with
+            local prices, currencies, and a fun retro-gaming experience.
           </p>
           <p className="font-pixel text-[7px] text-muted-foreground mt-4">
             VERSION 1.0.0

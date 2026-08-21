@@ -6,26 +6,26 @@ import { PixelCharacter } from "@/components/PixelCharacters";
 const FEATURES = [
   {
     icon: Globe,
-    title: "REGIONAL PRICES",
-    description: "Compare game prices across 5 regions with local currencies.",
+    title: "LOCAL PRICES, EVERYWHERE",
+    description: "Compare game prices across 5 regions with real local currencies — no guessing.",
     color: "text-cyan",
   },
   {
     icon: Zap,
-    title: "DEAL POWER",
-    description: "AI-powered deal scoring finds the best bargains for you.",
+    title: "SMART DEAL SCORING",
+    description: "Our Deal Power system ranks every discount so you always know which ones are worth it.",
     color: "text-magenta",
   },
   {
     icon: Shield,
-    title: "S-RANK SYSTEM",
-    description: "The best deal in your results gets automatically ranked S-RANK.",
+    title: "S-RANK THE BEST",
+    description: "The top deal in your results gets automatically highlighted — never miss a steal.",
     color: "text-gold",
   },
   {
     icon: Star,
-    title: "GAMIFIED HUNTING",
-    description: "Earn achievements, track wishlist, and hunt deals like a game.",
+    title: "YOUR DEAL HUNTING HQ",
+    description: "Wishlist your favorites, track achievements, and build your deal-hunting record.",
     color: "text-neon-green",
   },
 ];
@@ -35,10 +35,9 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-crt-black overflow-hidden">
-      {/* Header */}
       <header className="relative z-10 flex items-center justify-between px-4 md:px-8 py-4 border-b border-border/50">
         <div className="font-pixel text-sm md:text-base text-cyan text-crt-shift-strong">
-          GAMEQUEST
+          DealQuest
         </div>
         <button
           onClick={() => navigate("/auth")}
@@ -48,9 +47,7 @@ export default function Landing() {
         </button>
       </header>
 
-      {/* Hero Section */}
       <section className="relative px-4 md:px-8 py-16 md:py-24 max-w-6xl mx-auto">
-        {/* Background decorations */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan/5 rounded-full blur-[100px]" />
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-magenta/5 rounded-full blur-[100px]" />
 
@@ -76,11 +73,11 @@ export default function Landing() {
             >
               FIND YOUR
               <span className="text-cyan"> NEXT </span>
-              GAME.
+              FAVORITE
               <br />
-              HUNT THE
+              GAME AT THE
               <span className="text-magenta"> BEST </span>
-              DEAL.
+              PRICE.
             </motion.h1>
 
             <motion.p
@@ -90,7 +87,7 @@ export default function Landing() {
               className="text-base md:text-lg text-muted-foreground mt-6 max-w-lg mx-auto lg:mx-0"
             >
               Compare game prices across regions, get smart deal scores, and
-              find the best bargains — all in a retro-gaming experience.
+              never overpay — all in a fun, retro-powered experience.
             </motion.p>
 
             <motion.div
@@ -122,7 +119,6 @@ export default function Landing() {
             </motion.div>
           </div>
 
-          {/* Character showcase */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -130,10 +126,7 @@ export default function Landing() {
             className="relative"
           >
             <div className="w-64 h-64 md:w-80 md:h-80 relative">
-              {/* Glowing background */}
               <div className="absolute inset-0 bg-cyan/10 rounded-full blur-3xl" />
-
-              {/* Character grid */}
               <div className="relative grid grid-cols-3 gap-4 items-center justify-items-center h-full">
                 <div />
                 <PixelCharacter character="loot" size="w-20 h-20" />
@@ -150,7 +143,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="relative px-4 md:px-8 py-16 md:py-24 max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0 }}
@@ -159,7 +151,7 @@ export default function Landing() {
           className="text-center mb-12"
         >
           <h2 className="font-pixel text-lg md:text-xl text-foreground text-crt-shift">
-            POWER UP YOUR DEAL HUNTING
+            BUILT FOR SMART SHOPPERS
           </h2>
           <p className="text-sm text-muted-foreground mt-3 max-w-md mx-auto">
             Everything you need to find the best game prices, all in one place.
@@ -190,7 +182,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="relative px-4 md:px-8 py-16 md:py-24 max-w-6xl mx-auto">
         <div className="relative p-8 md:p-12 rounded-2xl bg-gradient-to-br from-cyan/10 via-screen-dark to-magenta/10 border border-border overflow-hidden">
           <div className="absolute inset-0 crt-scanlines pointer-events-none opacity-30" />
@@ -198,31 +189,30 @@ export default function Landing() {
           <div className="relative z-10 flex flex-col items-center text-center gap-6">
             <Gamepad2 className="w-12 h-12 text-cyan" />
             <h2 className="font-pixel text-lg md:text-xl text-foreground text-crt-shift">
-              READY TO PLAY?
+              READY TO FIND YOUR NEXT DEAL?
             </h2>
             <p className="text-sm text-muted-foreground max-w-md">
-              Join GameQuest and start hunting the best deals across the globe.
-              Your next legendary bargain is waiting.
+              Join DealQuest and start comparing game prices across the globe.
+              Your next great bargain is just a search away.
             </p>
             <button
               onClick={() => navigate("/auth")}
               className="group flex items-center gap-2 px-10 py-4 bg-cyan text-crt-black font-pixel text-[11px] rounded-lg hover:bg-cyan/90 transition-colors glow-cyan cursor-pointer"
             >
-              ENTER GAMEQUEST
+              GET STARTED FREE
               <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="px-4 md:px-8 py-8 border-t border-border/50">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="font-pixel text-[10px] text-muted-foreground">
-            GAMEQUEST © 2026
+            DealQuest © 2026
           </div>
           <div className="text-xs text-muted-foreground">
-            Find your next game. Hunt the best deal.
+            Your next favorite game at the best price.
           </div>
         </div>
       </footer>

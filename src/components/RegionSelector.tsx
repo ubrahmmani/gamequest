@@ -54,10 +54,10 @@ export function RegionSelector({ onComplete }: RegionSelectorProps) {
               {/* Title */}
               <div className="text-center">
                 <h2 className="font-pixel text-lg md:text-xl text-cyan text-crt-shift-strong">
-                  WHERE ARE YOU PLAYING FROM?
+WHERE ARE YOU SHOPPING FROM?
                 </h2>
                 <p className="text-sm text-muted-foreground mt-2">
-                  Select your region to find the best local deals
+                  Pick your region so we can show you prices in your local currency
                 </p>
               </div>
 
@@ -66,7 +66,7 @@ export function RegionSelector({ onComplete }: RegionSelectorProps) {
                 <div className="flex items-center gap-2">
                   <PixelCharacter character="byte" size="w-10 h-10" />
                   <span className="font-pixel text-[7px] text-neon-green">
-                    {loading ? "SCANNING REGION..." : "BYTE IS READY TO SCAN"}
+                    {loading ? "SCANNING REGION..." : "BYTE IS READY TO HELP"}
                   </span>
                 </div>
               )}
@@ -136,7 +136,7 @@ export function RegionSelector({ onComplete }: RegionSelectorProps) {
                     CURRENCY: {REGIONS[selected!].currencySymbol} {REGIONS[selected!].currencyCode}
                   </p>
                   <p className="font-pixel text-[8px] text-neon-green mt-3">
-                    LOADING REGIONAL LOOT...
+                    FINDING THE BEST DEALS FOR YOU...
                   </p>
                 </motion.div>
               )}
@@ -164,7 +164,7 @@ export function RegionSelector({ onComplete }: RegionSelectorProps) {
                 <PixelCharacter character="loot" size="w-16 h-16" />
               )}
               <p className="font-pixel text-[10px] text-neon-green">
-                ENTERING THE QUEST...
+                LET'S GO DEAL HUNTING!
               </p>
             </motion.div>
           )}

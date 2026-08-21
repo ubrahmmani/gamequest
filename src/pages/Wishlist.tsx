@@ -26,7 +26,7 @@ export default function WishlistPage() {
           WISHLIST
         </h1>
         <p className="text-sm text-muted-foreground mt-2">
-          Your saved games and wishlisted deals
+          Games you've saved for later — your personal collection of favorites
         </p>
       </div>
 
@@ -37,10 +37,10 @@ export default function WishlistPage() {
           )}
           <div className="text-center">
             <h3 className="font-pixel text-sm text-foreground text-crt-shift mb-2">
-              NO SAVED GAMES
+              YOUR LIST IS EMPTY
             </h3>
             <p className="text-sm text-muted-foreground">
-              Add games to your wishlist to track them here.
+              Save games you love and we'll keep track of their prices for you.
             </p>
           </div>
         </div>

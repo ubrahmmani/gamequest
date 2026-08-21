@@ -2,12 +2,12 @@ import { useState, useEffect, useCallback } from "react";
 import { useApp } from "@/context/AppContext";
 
 const STATUS_MESSAGES = [
-  "INITIALIZING GAMEQUEST SYSTEM...",
-  "LOADING GAME DATABASE...",
+  "BOOTING UP DEALQUEST...",
+  "LOADING GAME CATALOG...",
   "SCANNING REGIONAL PRICES...",
   "CALIBRATING DEAL ENGINE...",
-  "LOADING PLAYER PROFILE...",
-  "READY TO HUNT LOOT!",
+  "PREPARING YOUR DASHBOARD...",
+  "READY TO FIND SOME DEALS!",
 ];
 
 interface BootSequenceProps {
@@ -80,29 +80,25 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
         bootComplete ? "opacity-0" : "opacity-100"
       }`}
     >
-      {/* Subtle scanlines */}
       <div className="absolute inset-0 crt-scanlines pointer-events-none" />
       <div className="absolute inset-0 crt-vignette pointer-events-none" />
 
       <div className="relative z-10 flex flex-col items-center gap-8 px-6 max-w-lg w-full">
-        {/* Logo */}
         <div className="text-center">
           <h1 className="font-pixel text-3xl md:text-4xl text-cyan text-crt-shift-strong tracking-wider">
-            GAMEQUEST
+            DEALQUEST
           </h1>
           <p className="font-pixel text-[8px] md:text-[10px] text-magenta mt-3 tracking-[0.3em]">
-            FIND YOUR NEXT GAME. HUNT THE BEST DEAL.
+            YOUR NEXT FAVORITE GAME AT THE BEST PRICE
           </p>
         </div>
 
-        {/* Status message */}
         <div className="w-full text-left">
           <p className="font-pixel text-[8px] md:text-[10px] text-neon-green min-h-[20px]">
             &gt; {STATUS_MESSAGES[currentMessage]}
           </p>
         </div>
 
-        {/* Progress bar */}
         <div className="w-full">
           <div className="w-full h-3 bg-screen-dark border border-border rounded-sm overflow-hidden">
             <div
@@ -120,7 +116,6 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
           </div>
         </div>
 
-        {/* Character */}
         <div className="flex items-center gap-3 mt-2">
           <div className="w-8 h-8">
             <svg viewBox="0 0 32 32" style={{ imageRendering: "pixelated" }}>
@@ -144,7 +139,6 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
           </span>
         </div>
 
-        {/* PRESS START */}
         {showPressStart && (
           <button
             onClick={handleStart}

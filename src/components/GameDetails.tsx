@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Heart, Clock } from "lucide-react";
+import { X, ExternalLink, Heart, Clock, ShoppingCart } from "lucide-react";
 import { useApp } from "@/context/AppContext";
 import { GAMES } from "@/data/games";
 import { formatPrice } from "@/lib/currency";
@@ -17,6 +17,7 @@ export function GameDetails() {
     settings,
     toggleWishlist,
     isInWishlist,
+    setActivePage,
   } = useApp();
 
   const game = selectedGameId ? GAMES.find((g) => g.id === selectedGameId) : null;
@@ -175,19 +176,29 @@ export function GameDetails() {
 
               {/* Action buttons */}
               <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    setActivePage("checkout");
+                    setSelectedGameId(null);
+                  }}
+                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-cyan text-crt-black font-pixel text-[10px] rounded-lg hover:bg-cyan/90 transition-colors glow-cyan cursor-pointer"
+                >
+                  <ShoppingCart className="w-3.5 h-3.5" />
+                  BUY NOW
+                </button>
                 <a
                   href={game.storeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-3 bg-cyan text-crt-black font-pixel text-[10px] rounded-lg hover:bg-cyan/90 transition-colors glow-cyan"
+                  className="flex items-center justify-center gap-2 px-5 py-3 bg-surface border border-border rounded-lg font-pixel text-[10px] text-muted-foreground hover:text-foreground hover:border-cyan/30 transition-colors"
                 >
-                  VIEW DEAL
                   <ExternalLink className="w-3.5 h-3.5" />
+                  STORE
                 </a>
                 <button
                   onClick={() => toggleWishlist(game.id)}
                   className={cn(
-                    "flex items-center justify-center gap-2 px-6 py-3 rounded-lg border font-pixel text-[10px] transition-colors cursor-pointer",
+                    "flex items-center justify-center gap-2 px-5 py-3 rounded-lg border font-pixel text-[10px] transition-colors cursor-pointer",
                     inWishlist
                       ? "bg-magenta/10 border-magenta/40 text-magenta"
                       : "bg-surface border-border text-muted-foreground hover:border-magenta/50 hover:text-magenta",
@@ -199,7 +210,7 @@ export function GameDetails() {
                       inWishlist && "fill-current",
                     )}
                   />
-                  {inWishlist ? "SAVED" : "WISHLIST"}
+                  {inWishlist ? "SAVED" : "SAVE"}
                 </button>
               </div>
             </div>

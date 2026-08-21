@@ -27,7 +27,7 @@ export default function AchievementsPage() {
           ACHIEVEMENTS
         </h1>
         <p className="text-sm text-muted-foreground mt-2">
-          Track your deal-hunting progress
+          Every deal you find earns you recognition. Keep going!
         </p>
         <div className="flex items-center gap-3 mt-3">
           <span className="font-pixel text-[10px] text-cyan">

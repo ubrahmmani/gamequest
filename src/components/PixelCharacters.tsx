@@ -270,20 +270,20 @@ interface CharacterReactionProps {
 }
 
 export function CharacterReaction({ discount, className }: CharacterReactionProps) {
-  let text = "Maybe wait...";
+  let text = "Hmm, maybe shop around...";
   let color = "text-muted-foreground";
 
   if (discount >= 90) {
-    text = "LEGENDARY LOOT!";
+    text = "LEGENDARY DEAL!";
     color = "text-gold";
   } else if (discount >= 75) {
-    text = "THAT'S HUGE!";
+    text = "INCREDIBLE SAVINGS!";
     color = "text-magenta";
   } else if (discount >= 50) {
-    text = "Nice!";
+    text = "Great find!";
     color = "text-cyan";
   } else if (discount >= 25) {
-    text = "Not bad!";
+    text = "Not bad at all!";
     color = "text-neon-green";
   }
 

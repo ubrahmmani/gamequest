@@ -10,8 +10,8 @@ export interface Achievement {
 export const ACHIEVEMENTS: Achievement[] = [
   {
     id: "deal-hunter",
-    title: "Deal Hunter",
-    description: "View 10 discounted games",
+    title: "Deal Spotter",
+    description: "Browse through 10 discounted games to hone your instincts.",
     icon: "🔍",
     requirement: 10,
     field: "gamesViewed",
@@ -19,15 +19,15 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: "bargain-master",
     title: "Bargain Master",
-    description: "Find a 75%+ discount",
+    description: "Uncover a discount of 75% or more — a true steal.",
     icon: "💰",
     requirement: 1,
     field: "bigDealsFound",
   },
   {
     id: "world-gamer",
-    title: "World Gamer",
-    description: "Explore 3 regions",
+    title: "Globe Trotter",
+    description: "Explore deals across 3 different regions worldwide.",
     icon: "🌍",
     requirement: 3,
     field: "regionsVisited",
@@ -35,7 +35,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: "s-rank-collector",
     title: "S-Rank Collector",
-    description: "Find 5 S-Rank deals",
+    description: "Discover 5 top-rated deals that earn the coveted S-Rank.",
     icon: "⭐",
     requirement: 5,
     field: "sRanksFound",
@@ -43,7 +43,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: "wishlist-warrior",
     title: "Wishlist Warrior",
-    description: "Add 5 games to wishlist",
+    description: "Build your dream list by saving 5 games you love.",
     icon: "❤️",
     requirement: 5,
     field: "wishlistCount",
@@ -51,7 +51,7 @@ export const ACHIEVEMENTS: Achievement[] = [
   {
     id: "genre-explorer",
     title: "Genre Explorer",
-    description: "Search across 4 different genres",
+    description: "Cast a wide net by searching across 4 different genres.",
     icon: "🎮",
     requirement: 4,
     field: "genresExplored",

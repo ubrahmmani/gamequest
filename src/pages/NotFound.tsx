@@ -19,7 +19,7 @@ export default function NotFound() {
             LEVEL NOT FOUND
           </p>
           <p className="text-sm text-muted-foreground mt-2">
-            This quest doesn&apos;t exist. Let&apos;s get you back to base.
+            This page doesn’t exist. Let’s get you back to where the deals are.
           </p>
         </div>
 
@@ -27,7 +27,7 @@ export default function NotFound() {
           onClick={() => navigate("/")}
           className="font-pixel text-[10px] px-6 py-3 bg-cyan/10 border border-cyan/30 text-cyan rounded-lg hover:bg-cyan/20 transition-colors cursor-pointer"
         >
-          RETURN TO BASE
+          BACK TO DEALS
         </button>
       </div>
     </div>

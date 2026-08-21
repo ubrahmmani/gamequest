@@ -142,7 +142,7 @@ function GameCardInner({ game, isSRank, index }: GameCardProps) {
           className="mt-2 w-full flex items-center justify-center gap-2 py-2 px-3 rounded-md bg-cyan/10 border border-cyan/30 text-cyan font-pixel text-[8px] hover:bg-cyan/20 transition-colors cursor-pointer"
         >
           <Eye className="w-3 h-3" />
-          VIEW DEAL
+          VIEW DETAILS
         </button>
       </div>
     </motion.div>

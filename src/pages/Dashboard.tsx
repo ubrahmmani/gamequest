@@ -5,6 +5,8 @@ import {
   Trophy,
   Settings,
   LogOut,
+  MessageCircle,
+  ShieldCheck,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
 import { useAuth } from "@/hooks/use-auth";
@@ -28,11 +30,16 @@ import { cn } from "@/lib/utils";
 const WishlistPage = lazy(() => import("./Wishlist"));
 const AchievementsPage = lazy(() => import("./Achievements"));
 const SettingsPage = lazy(() => import("./Settings"));
+const CheckoutPage = lazy(() => import("./Checkout"));
+const CommentsPage = lazy(() => import("./Comments"));
+const AdminPage = lazy(() => import("./Admin"));
 
 const NAV_ITEMS = [
   { id: "discover", label: "DISCOVER", icon: Gamepad2 },
   { id: "wishlist", label: "WISHLIST", icon: Heart },
+  { id: "community", label: "COMMUNITY", icon: MessageCircle },
   { id: "achievements", label: "ACHIEVEMENTS", icon: Trophy },
+  { id: "admin", label: "ADMIN", icon: ShieldCheck },
   { id: "settings", label: "SETTINGS", icon: Settings },
 ] as const;
 
@@ -90,7 +97,6 @@ function DiscoverPage() {
 
   return (
     <>
-      {/* Hero */}
       <div className="relative mb-8 p-6 md:p-10 rounded-xl bg-gradient-to-br from-screen-dark via-surface to-screen-dark border border-border overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-cyan/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-magenta/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
@@ -98,10 +104,10 @@ function DiscoverPage() {
         <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-6">
           <div className="flex-1">
             <h1 className="font-pixel text-xl md:text-2xl text-cyan text-crt-shift-strong">
-              FIND YOUR NEXT LOOT
+              FIND YOUR NEXT DEAL
             </h1>
             <p className="text-sm text-muted-foreground mt-2 max-w-md">
-              Scan the market. Hunt the deal. Claim the S-RANK.
+              Browse games, compare prices across regions, and never miss a bargain.
             </p>
           </div>
           {settings.characters && (
@@ -110,18 +116,15 @@ function DiscoverPage() {
         </div>
       </div>
 
-      {/* Search */}
       <div className="mb-6 flex flex-col md:flex-row md:items-center gap-4">
         <SearchBar />
         <SortBar />
       </div>
 
-      {/* Filters */}
       <div className="mb-6">
         <FilterBar />
       </div>
 
-      {/* Results count */}
       <div className="flex items-center justify-between mb-4">
         <p className="text-xs text-muted-foreground">
           {filteredGames.length} game{filteredGames.length !== 1 ? "s" : ""} found
@@ -140,7 +143,6 @@ function DiscoverPage() {
         )}
       </div>
 
-      {/* Game grid */}
       {filteredGames.length === 0 ? (
         <EmptyState />
       ) : (
@@ -175,11 +177,9 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-crt-black">
-      {/* Header */}
       <header className="sticky top-0 z-30 bg-crt-black/90 backdrop-blur-md border-b border-border">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between h-14">
-            {/* Logo */}
             <button
               onClick={() => {
                 setActivePage("discover");
@@ -187,10 +187,9 @@ export default function Dashboard() {
               }}
               className="font-pixel text-sm md:text-base text-cyan text-crt-shift-strong hover:text-foreground transition-colors cursor-pointer"
             >
-              GAMEQUEST
+              DealQuest
             </button>
 
-            {/* Navigation - Desktop */}
             <nav className="hidden md:flex items-center gap-1">
               {NAV_ITEMS.map((item) => (
                 <button
@@ -209,7 +208,6 @@ export default function Dashboard() {
               ))}
             </nav>
 
-            {/* Right side */}
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setActivePage("settings")}
@@ -235,7 +233,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Navigation - Mobile */}
         <div className="md:hidden border-t border-border">
           <div className="flex items-center justify-around px-2 py-1">
             {NAV_ITEMS.map((item) => (
@@ -243,7 +240,7 @@ export default function Dashboard() {
                 key={item.id}
                 onClick={() => setActivePage(item.id)}
                 className={cn(
-                  "flex flex-col items-center gap-0.5 px-3 py-1.5 rounded-lg text-[10px] transition-colors cursor-pointer",
+                  "flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg text-[9px] transition-colors cursor-pointer",
                   activePage === item.id
                     ? "text-cyan"
                     : "text-muted-foreground",
@@ -257,17 +254,18 @@ export default function Dashboard() {
         </div>
       </header>
 
-      {/* Main content */}
       <main className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8">
         <Suspense fallback={<PageLoader />}>
           {activePage === "discover" && <DiscoverPage />}
           {activePage === "wishlist" && <WishlistPage />}
+          {activePage === "community" && <CommentsPage />}
           {activePage === "achievements" && <AchievementsPage />}
+          {activePage === "admin" && <AdminPage />}
           {activePage === "settings" && <SettingsPage />}
+          {activePage === "checkout" && <CheckoutPage />}
         </Suspense>
       </main>
 
-      {/* Decorative characters - edges of interface (desktop) */}
       {settings.characters && (
         <>
           <div className="fixed bottom-4 left-4 hidden lg:block opacity-30 hover:opacity-100 transition-opacity z-20">

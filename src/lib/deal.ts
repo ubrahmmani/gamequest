@@ -76,11 +76,11 @@ export function getRankBgColor(rank: DealRank): string {
 }
 
 export function getDiscountReaction(discount: number): string {
-  if (discount >= 90) return "LEGENDARY LOOT!";
-  if (discount >= 75) return "THAT'S HUGE!";
-  if (discount >= 50) return "Nice!";
-  if (discount >= 25) return "Not bad!";
-  return "Maybe wait...";
+  if (discount >= 90) return "LEGENDARY DEAL!";
+  if (discount >= 75) return "INCREDIBLE SAVINGS!";
+  if (discount >= 50) return "Great find!";
+  if (discount >= 25) return "Not bad at all!";
+  return "Hmm, maybe shop around...";
 }
 
 export function getDiscountReactionCharacter(discount: number): "excited" | "idle" | "sad" {
