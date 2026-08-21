@@ -82,7 +82,9 @@ class RootErrorBoundary extends React.Component<
   }
 }
 
-const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
+// ConvexReactClient is initialized inside ConvexInit (below) so that if
+// VITE_CONVEX_URL is missing, RootErrorBoundary catches the error instead
+// of producing a blank white screen at module-load time.
 
 function RouteSyncer() {
   const location = useLocation();
@@ -177,13 +179,27 @@ function AppShell() {
   );
 }
 
+/**
+ * Initializes ConvexReactClient during React render (inside RootErrorBoundary)
+ * so that a missing VITE_CONVEX_URL produces a visible error instead of a
+ * blank white page from a module-level throw.
+ */
+function ConvexInit({ children }: { children: React.ReactNode }) {
+  const [convex] = useState(
+    () => new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string),
+  );
+  return (
+    <ConvexAuthProvider client={convex}>{children}</ConvexAuthProvider>
+  );
+}
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RootErrorBoundary>
       <ToolbarErrorBoundary>
         <VlyToolbar />
       </ToolbarErrorBoundary>
-      <ConvexAuthProvider client={convex}>
+      <ConvexInit>
         <AppProvider>
           <BrowserRouter>
             <RouteSyncer />
@@ -193,7 +209,7 @@ createRoot(document.getElementById("root")!).render(
           </BrowserRouter>
           <Toaster />
         </AppProvider>
-      </ConvexAuthProvider>
+      </ConvexInit>
     </RootErrorBoundary>
   </StrictMode>,
 );
