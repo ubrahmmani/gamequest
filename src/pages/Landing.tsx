@@ -37,7 +37,7 @@ export default function Landing() {
     <div className="min-h-screen bg-crt-black overflow-hidden">
       <header className="relative z-10 flex items-center justify-between px-4 md:px-8 py-4 border-b border-border/50">
         <div className="font-pixel text-sm md:text-base text-cyan text-crt-shift-strong">
-          DealQuest
+          GAMEQUEST
         </div>
         <button
           onClick={() => navigate("/auth")}
@@ -192,7 +192,7 @@ export default function Landing() {
               READY TO FIND YOUR NEXT DEAL?
             </h2>
             <p className="text-sm text-muted-foreground max-w-md">
-              Join DealQuest and start comparing game prices across the globe.
+              Join GameQuest and start comparing game prices across the globe.
               Your next great bargain is just a search away.
             </p>
             <button
@@ -209,7 +209,7 @@ export default function Landing() {
       <footer className="px-4 md:px-8 py-8 border-t border-border/50">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="font-pixel text-[10px] text-muted-foreground">
-            DealQuest © 2026
+            GAMEQUEST © 2026
           </div>
           <div className="text-xs text-muted-foreground">
             Your next favorite game at the best price.

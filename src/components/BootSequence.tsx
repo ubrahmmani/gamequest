@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useApp } from "@/context/AppContext";
 
 const STATUS_MESSAGES = [
-  "BOOTING UP DEALQUEST...",
+  "BOOTING UP GAMEQUEST...",
   "LOADING GAME CATALOG...",
   "SCANNING REGIONAL PRICES...",
   "CALIBRATING DEAL ENGINE...",
@@ -86,7 +86,7 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
       <div className="relative z-10 flex flex-col items-center gap-8 px-6 max-w-lg w-full">
         <div className="text-center">
           <h1 className="font-pixel text-3xl md:text-4xl text-cyan text-crt-shift-strong tracking-wider">
-            DEALQUEST
+            GAMEQUEST
           </h1>
           <p className="font-pixel text-[8px] md:text-[10px] text-magenta mt-3 tracking-[0.3em]">
             YOUR NEXT FAVORITE GAME AT THE BEST PRICE

@@ -187,7 +187,7 @@ export default function Dashboard() {
               }}
               className="font-pixel text-sm md:text-base text-cyan text-crt-shift-strong hover:text-foreground transition-colors cursor-pointer"
             >
-              DealQuest
+              GAMEQUEST
             </button>
 
             <nav className="hidden md:flex items-center gap-1">
