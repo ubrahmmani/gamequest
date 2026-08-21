@@ -1,0 +1,159 @@
+import { useState, useEffect, useCallback } from "react";
+import { useApp } from "@/context/AppContext";
+
+const STATUS_MESSAGES = [
+  "INITIALIZING GAMEQUEST SYSTEM...",
+  "LOADING GAME DATABASE...",
+  "SCANNING REGIONAL PRICES...",
+  "CALIBRATING DEAL ENGINE...",
+  "LOADING PLAYER PROFILE...",
+  "READY TO HUNT LOOT!",
+];
+
+interface BootSequenceProps {
+  onComplete: () => void;
+}
+
+export function BootSequence({ onComplete }: BootSequenceProps) {
+  const [progress, setProgress] = useState(0);
+  const [currentMessage, setCurrentMessage] = useState(0);
+  const [showPressStart, setShowPressStart] = useState(false);
+  const [bootComplete, setBootComplete] = useState(false);
+  const { settings } = useApp();
+
+  useEffect(() => {
+    if (settings.reducedMotion) {
+      setProgress(100);
+      setCurrentMessage(STATUS_MESSAGES.length - 1);
+      setShowPressStart(true);
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        const next = prev + Math.random() * 12 + 3;
+        if (next >= 100) {
+          clearInterval(interval);
+          return 100;
+        }
+        return next;
+      });
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, [settings.reducedMotion]);
+
+  useEffect(() => {
+    if (settings.reducedMotion) return;
+
+    const messageIndex = Math.min(
+      Math.floor((progress / 100) * STATUS_MESSAGES.length),
+      STATUS_MESSAGES.length - 1,
+    );
+    setCurrentMessage(messageIndex);
+
+    if (progress >= 100 && !showPressStart) {
+      setTimeout(() => setShowPressStart(true), 500);
+    }
+  }, [progress, showPressStart, settings.reducedMotion]);
+
+  const handleStart = useCallback(() => {
+    if (!showPressStart) return;
+    setBootComplete(true);
+    setTimeout(() => onComplete(), 600);
+  }, [showPressStart, onComplete]);
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleStart();
+      }
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [handleStart]);
+
+  return (
+    <div
+      className={`fixed inset-0 z-50 flex flex-col items-center justify-center bg-crt-black transition-opacity duration-500 ${
+        bootComplete ? "opacity-0" : "opacity-100"
+      }`}
+    >
+      {/* Subtle scanlines */}
+      <div className="absolute inset-0 crt-scanlines pointer-events-none" />
+      <div className="absolute inset-0 crt-vignette pointer-events-none" />
+
+      <div className="relative z-10 flex flex-col items-center gap-8 px-6 max-w-lg w-full">
+        {/* Logo */}
+        <div className="text-center">
+          <h1 className="font-pixel text-3xl md:text-4xl text-cyan text-crt-shift-strong tracking-wider">
+            GAMEQUEST
+          </h1>
+          <p className="font-pixel text-[8px] md:text-[10px] text-magenta mt-3 tracking-[0.3em]">
+            FIND YOUR NEXT GAME. HUNT THE BEST DEAL.
+          </p>
+        </div>
+
+        {/* Status message */}
+        <div className="w-full text-left">
+          <p className="font-pixel text-[8px] md:text-[10px] text-neon-green min-h-[20px]">
+            &gt; {STATUS_MESSAGES[currentMessage]}
+          </p>
+        </div>
+
+        {/* Progress bar */}
+        <div className="w-full">
+          <div className="w-full h-3 bg-screen-dark border border-border rounded-sm overflow-hidden">
+            <div
+              className="h-full boot-progress rounded-sm"
+              style={{ width: `${Math.min(progress, 100)}%` }}
+            />
+          </div>
+          <div className="flex justify-between mt-2">
+            <span className="font-pixel text-[8px] text-muted-foreground">
+              LOADED
+            </span>
+            <span className="font-pixel text-[8px] text-cyan">
+              {Math.round(Math.min(progress, 100))}%
+            </span>
+          </div>
+        </div>
+
+        {/* Character */}
+        <div className="flex items-center gap-3 mt-2">
+          <div className="w-8 h-8">
+            <svg viewBox="0 0 32 32" style={{ imageRendering: "pixelated" }}>
+              <rect x="8" y="3" width="16" height="10" fill="#65FF72" />
+              <rect x="6" y="5" width="2" height="6" fill="#65FF72" />
+              <rect x="24" y="5" width="2" height="6" fill="#65FF72" />
+              <rect x="10" y="5" width="4" height="4" fill="#08080C" />
+              <rect x="18" y="5" width="4" height="4" fill="#08080C" />
+              <rect x="11" y="6" width="2" height="2" fill="#65FF72" />
+              <rect x="19" y="6" width="2" height="2" fill="#65FF72" />
+              <rect x="15" y="0" width="2" height="3" fill="#FFD84D" />
+              <rect x="10" y="13" width="12" height="8" fill="#65FF72" />
+              <rect x="6" y="15" width="4" height="2" fill="#65FF72" />
+              <rect x="22" y="15" width="4" height="2" fill="#65FF72" />
+              <rect x="10" y="21" width="4" height="2" fill="#65FF72" />
+              <rect x="18" y="21" width="4" height="2" fill="#65FF72" />
+            </svg>
+          </div>
+          <span className="font-pixel text-[7px] text-neon-green">
+            BYTE IS SCANNING...
+          </span>
+        </div>
+
+        {/* PRESS START */}
+        {showPressStart && (
+          <button
+            onClick={handleStart}
+            className="mt-4 font-pixel text-sm md:text-base text-gold blink hover:text-cyan transition-colors cursor-pointer focus:outline-none"
+          >
+            ▶ PRESS START ◀
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}

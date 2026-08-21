@@ -1,0 +1,361 @@
+/* DO NOT CHANGE */
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+/* DO NOT CHANGE */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* GAMEQUEST Theme Colors */
+  --color-cyan: #00F0FF;
+  --color-magenta: #FF2BD6;
+  --color-gold: #FFD84D;
+  --color-neon-green: #65FF72;
+  --color-screen-dark: #10131A;
+  --color-crt-black: #08080C;
+  --color-surface: #161A25;
+  --color-surface-light: #1C2030;
+  --color-border-glow: #00F0FF33;
+}
+
+/* GAMEQUEST Theme Variables */
+:root {
+  --radius: 0.5rem;
+  --background: #08080C;
+  --foreground: #F5F5F5;
+  --card: #10131A;
+  --card-foreground: #F5F5F5;
+  --popover: #10131A;
+  --popover-foreground: #F5F5F5;
+  --primary: #00F0FF;
+  --primary-foreground: #08080C;
+  --secondary: #161A25;
+  --secondary-foreground: #F5F5F5;
+  --muted: #161A25;
+  --muted-foreground: #6B7280;
+  --accent: #FF2BD6;
+  --accent-foreground: #F5F5F5;
+  --destructive: #EF4444;
+  --border: #1E2233;
+  --input: #1E2233;
+  --ring: #00F0FF;
+  --chart-1: #00F0FF;
+  --chart-2: #FF2BD6;
+  --chart-3: #FFD84D;
+  --chart-4: #65FF72;
+  --chart-5: #A78BFA;
+  --sidebar: #10131A;
+  --sidebar-foreground: #F5F5F5;
+  --sidebar-primary: #00F0FF;
+  --sidebar-primary-foreground: #08080C;
+  --sidebar-accent: #161A25;
+  --sidebar-accent-foreground: #F5F5F5;
+  --sidebar-border: #1E2233;
+  --sidebar-ring: #00F0FF;
+}
+
+/* Dark theme is the only theme for GAMEQUEST */
+.dark {
+  --background: #08080C;
+  --foreground: #F5F5F5;
+  --card: #10131A;
+  --card-foreground: #F5F5F5;
+  --popover: #10131A;
+  --popover-foreground: #F5F5F5;
+  --primary: #00F0FF;
+  --primary-foreground: #08080C;
+  --secondary: #161A25;
+  --secondary-foreground: #F5F5F5;
+  --muted: #161A25;
+  --muted-foreground: #6B7280;
+  --accent: #FF2BD6;
+  --accent-foreground: #F5F5F5;
+  --destructive: #EF4444;
+  --border: #1E2233;
+  --input: #1E2233;
+  --ring: #00F0FF;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  button:not([disabled]),
+  [role="button"]:not([disabled]) {
+    cursor: pointer;
+  }
+}
+
+/* ===== GAMEQUEST CUSTOM STYLES ===== */
+
+/* Pixel font class */
+.font-pixel {
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* CRT Overlay */
+.crt-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.crt-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.03) 0px,
+    rgba(0, 0, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+.crt-vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+.crt-flicker {
+  animation: crt-flicker 0.15s infinite;
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 0.97; }
+  50% { opacity: 1; }
+  100% { opacity: 0.98; }
+}
+
+/* RGB shift text effect */
+.text-crt-shift {
+  text-shadow:
+    0.5px 0 0 rgba(255, 43, 214, 0.25),
+    -0.5px 0 0 rgba(0, 240, 255, 0.25);
+}
+
+.text-crt-shift-strong {
+  text-shadow:
+    1px 0 0 rgba(255, 43, 214, 0.4),
+    -1px 0 0 rgba(0, 240, 255, 0.4);
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), 0 0 40px rgba(0, 240, 255, 0.1);
+}
+
+.glow-magenta {
+  box-shadow: 0 0 20px rgba(255, 43, 214, 0.3), 0 0 40px rgba(255, 43, 214, 0.1);
+}
+
+.glow-gold {
+  box-shadow: 0 0 20px rgba(255, 216, 77, 0.3), 0 0 40px rgba(255, 216, 77, 0.1);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
+}
+
+.text-glow-gold {
+  text-shadow: 0 0 10px rgba(255, 216, 77, 0.5), 0 0 20px rgba(255, 216, 77, 0.3);
+}
+
+.text-glow-magenta {
+  text-shadow: 0 0 10px rgba(255, 43, 214, 0.5), 0 0 20px rgba(255, 43, 214, 0.3);
+}
+
+/* S-Rank pulse animation */
+.s-rank-pulse {
+  animation: s-rank-pulse 2s ease-in-out infinite;
+}
+
+@keyframes s-rank-pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 216, 77, 0.3), 0 0 30px rgba(255, 216, 77, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 216, 77, 0.5), 0 0 50px rgba(255, 216, 77, 0.2);
+  }
+}
+
+/* S-Rank border glow */
+.border-s-rank {
+  border: 1px solid rgba(255, 216, 77, 0.4);
+}
+
+/* Pixel border style */
+.pixel-border {
+  border: 2px solid;
+  border-image: repeating-linear-gradient(
+    90deg,
+    currentColor 0px,
+    currentColor 4px,
+    transparent 4px,
+    transparent 8px
+  ) 2;
+}
+
+/* Boot sequence progress bar */
+.boot-progress {
+  background: linear-gradient(90deg, #00F0FF, #FF2BD6);
+  transition: width 0.3s ease;
+}
+
+/* Character idle animation */
+.char-idle {
+  animation: char-breathe 2s ease-in-out infinite;
+}
+
+@keyframes char-breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+/* Character excited animation */
+.char-excited {
+  animation: char-jump 0.5s ease-in-out infinite;
+}
+
+@keyframes char-jump {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.05); }
+}
+
+/* Character search animation */
+.char-search {
+  animation: char-sway 1s ease-in-out infinite;
+}
+
+@keyframes char-sway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+/* Character loading animation */
+.char-loading {
+  animation: char-spin 1s linear infinite;
+}
+
+@keyframes char-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Character error animation */
+.char-error {
+  animation: char-shake 0.3s ease-in-out infinite;
+}
+
+@keyframes char-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+/* Character sleep animation */
+.char-sleep {
+  animation: char-sleep 3s ease-in-out infinite;
+}
+
+@keyframes char-sleep {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+  50% { transform: translateY(2px) rotate(-3deg); opacity: 0.5; }
+}
+
+/* Blink animation for PRESS START */
+.blink {
+  animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Game card hover */
+.game-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.15);
+}
+
+/* Deal HP bar animation */
+.deal-hp-fill {
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #10131A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E2233;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2A2F42;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 240, 255, 0.3);
+  color: #F5F5F5;
+}
+
+/* Prevent layout shift on font loading */
+.font-pixel {
+  font-family: 'Press Start 2P', monospace;
+  font-display: swap;
+}
