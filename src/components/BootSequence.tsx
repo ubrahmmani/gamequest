@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useApp } from "@/context/AppContext";
 
 const STATUS_MESSAGES = [
@@ -15,19 +15,26 @@ interface BootSequenceProps {
 }
 
 export function BootSequence({ onComplete }: BootSequenceProps) {
-  const [progress, setProgress] = useState(0);
-  const [currentMessage, setCurrentMessage] = useState(0);
-  const [showPressStart, setShowPressStart] = useState(false);
-  const [bootComplete, setBootComplete] = useState(false);
   const { settings } = useApp();
+  const reducedMotion = settings.reducedMotion;
+
+  const [progress, setProgress] = useState(() =>
+    reducedMotion ? 100 : 0,
+  );
+  const [showPressStart, setShowPressStart] = useState(() => reducedMotion);
+  const [bootComplete, setBootComplete] = useState(false);
+
+  // Derived value instead of state — avoids setState in effect
+  const currentMessage = useMemo(() => {
+    const idx = Math.min(
+      Math.floor((progress / 100) * STATUS_MESSAGES.length),
+      STATUS_MESSAGES.length - 1,
+    );
+    return idx;
+  }, [progress]);
 
   useEffect(() => {
-    if (settings.reducedMotion) {
-      setProgress(100);
-      setCurrentMessage(STATUS_MESSAGES.length - 1);
-      setShowPressStart(true);
-      return;
-    }
+    if (reducedMotion) return;
 
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -41,21 +48,16 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
     }, 200);
 
     return () => clearInterval(interval);
-  }, [settings.reducedMotion]);
+  }, [reducedMotion]);
 
+  // Show PRESS START after progress reaches 100
   useEffect(() => {
-    if (settings.reducedMotion) return;
-
-    const messageIndex = Math.min(
-      Math.floor((progress / 100) * STATUS_MESSAGES.length),
-      STATUS_MESSAGES.length - 1,
-    );
-    setCurrentMessage(messageIndex);
-
+    if (reducedMotion) return;
     if (progress >= 100 && !showPressStart) {
-      setTimeout(() => setShowPressStart(true), 500);
+      const t = setTimeout(() => setShowPressStart(true), 500);
+      return () => clearTimeout(t);
     }
-  }, [progress, showPressStart, settings.reducedMotion]);
+  }, [progress, showPressStart, reducedMotion]);
 
   const handleStart = useCallback(() => {
     if (!showPressStart) return;

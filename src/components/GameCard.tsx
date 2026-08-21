@@ -3,11 +3,11 @@ import { Eye, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import { useApp } from "@/context/AppContext";
 import { formatPrice } from "@/lib/currency";
-import { calculateDealPower, getDiscountReaction } from "@/lib/deal";
+import { calculateDealPower } from "@/lib/deal";
 import { DealPowerBar } from "./DealPowerBar";
 import { RankBadge, DealPowerScore } from "./RankBadge";
 import { CharacterReaction, PixelCharacter } from "./PixelCharacters";
-import type { Game, RegionId } from "@/types";
+import type { Game } from "@/types";
 import { cn } from "@/lib/utils";
 
 interface GameCardProps {

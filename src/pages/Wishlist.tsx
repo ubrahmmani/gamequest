@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { Heart, Trash2, Eye } from "lucide-react";
+import { Trash2, Eye } from "lucide-react";
 import { useApp } from "@/context/AppContext";
 import { GAMES } from "@/data/games";
 import { formatPrice } from "@/lib/currency";
 import { calculateDealPower } from "@/lib/deal";
 import { RankBadge } from "@/components/RankBadge";
 import { PixelCharacter } from "@/components/PixelCharacters";
-import { cn } from "@/lib/utils";
+
 
 export default function WishlistPage() {
   const {

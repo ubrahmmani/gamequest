@@ -166,7 +166,7 @@ function DiscoverPage() {
 export default function Dashboard() {
   const { activePage, setActivePage, setSelectedGameId, regionId, settings } =
     useApp();
-  const { user, signOut } = useAuth();
+  const { signOut } = useAuth();
   const navigate = useNavigate();
   const region = REGIONS[regionId];
 

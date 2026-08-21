@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { MessageCircle, Send, ThumbsUp, Clock } from "lucide-react";
 import { useApp } from "@/context/AppContext";
 import { GAMES } from "@/data/games";
-import { formatPrice } from "@/lib/currency";
+
 import { PixelCharacter } from "@/components/PixelCharacters";
 
 interface Comment {
@@ -59,7 +59,7 @@ export default function CommentsPage() {
   const { regionId, settings } = useApp();
   const [comments, setComments] = useState(INITIAL_COMMENTS);
   const [newComment, setNewComment] = useState("");
-  const [selectedGame, setSelectedGame] = useState<string | null>(null);
+
 
   const handleSubmit = () => {
     if (!newComment.trim()) return;
@@ -86,9 +86,7 @@ export default function CommentsPage() {
     );
   };
 
-  const filteredComments = selectedGame
-    ? comments
-    : comments;
+  const filteredComments = comments;
 
   return (
     <div className="max-w-2xl mx-auto">

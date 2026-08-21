@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
 import {
-  LayoutDashboard,
   Package,
   Globe,
   BarChart3,
   Settings,
   TrendingUp,
-  Users,
   Eye,
 } from "lucide-react";
 import { useApp } from "@/context/AppContext";
@@ -25,7 +23,6 @@ const STATS = [
 
 export default function AdminPage() {
   const { regionId } = useApp();
-  const region = REGIONS[regionId];
 
   return (
     <div className="max-w-5xl mx-auto">
