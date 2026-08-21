@@ -82,23 +82,7 @@ class RootErrorBoundary extends React.Component<
   }
 }
 
-// Guard against missing VITE_CONVEX_URL — crash here kills the module
-// before React ever mounts, producing a permanently blank preview.
-let convex: ConvexReactClient | null = null;
-try {
-  const url = import.meta.env.VITE_CONVEX_URL as string | undefined;
-  if (url) {
-    convex = new ConvexReactClient(url);
-  } else {
-    console.warn("[DealQuest] VITE_CONVEX_URL is not set — running without Convex backend.");
-  }
-} catch (e) {
-  console.warn("[DealQuest] Failed to initialise Convex client:", e);
-}
-
-// Wrap children in ConvexAuthProvider only when the client is available.
-// Without a valid client the app still renders the boot sequence, landing
-// page, and dashboard — auth-protected routes simply stay unauthenticated.
+const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 
 function RouteSyncer() {
   const location = useLocation();
@@ -199,19 +183,7 @@ createRoot(document.getElementById("root")!).render(
       <ToolbarErrorBoundary>
         <VlyToolbar />
       </ToolbarErrorBoundary>
-      {convex ? (
-        <ConvexAuthProvider client={convex}>
-          <AppProvider>
-            <BrowserRouter>
-              <RouteSyncer />
-              <Suspense fallback={<RouteLoading />}>
-                <AppShell />
-              </Suspense>
-            </BrowserRouter>
-            <Toaster />
-          </AppProvider>
-        </ConvexAuthProvider>
-      ) : (
+      <ConvexAuthProvider client={convex}>
         <AppProvider>
           <BrowserRouter>
             <RouteSyncer />
@@ -221,7 +193,7 @@ createRoot(document.getElementById("root")!).render(
           </BrowserRouter>
           <Toaster />
         </AppProvider>
-      )}
+      </ConvexAuthProvider>
     </RootErrorBoundary>
   </StrictMode>,
 );
