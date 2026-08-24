@@ -41,11 +41,14 @@ export default function SettingsPage() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="mb-8">
-        <h1 className="font-pixel text-xl text-cyan text-crt-shift">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan/10 border border-cyan/20 rounded-full mb-4">
+          <span className="font-pixel text-[7px] text-cyan tracking-wider">CONFIGURE</span>
+        </div>
+        <h1 className="font-pixel text-xl text-foreground text-crt-shift">
           SETTINGS
         </h1>
         <p className="text-sm text-muted-foreground mt-2">
-          Tweak the look and feel of GameQuest to your liking
+          Customize the look and feel of GameQuest to your liking.
         </p>
       </div>
 

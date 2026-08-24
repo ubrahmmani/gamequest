@@ -91,11 +91,14 @@ export default function CommentsPage() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="mb-8">
-        <h1 className="font-pixel text-xl text-cyan text-crt-shift">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-purple/10 border border-purple/20 rounded-full mb-4">
+          <span className="font-pixel text-[7px] text-purple tracking-wider">DISCUSS</span>
+        </div>
+        <h1 className="font-pixel text-xl text-foreground text-crt-shift">
           COMMUNITY
         </h1>
         <p className="text-sm text-muted-foreground mt-2">
-          Share tips, reviews, and deal finds with fellow shoppers.
+          Share tips, reviews, and deal finds with fellow gamers.
         </p>
       </div>
 

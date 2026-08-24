@@ -122,8 +122,8 @@ function ErrorDialog({
             <div>
               <DialogTitle className="text-base">Runtime error</DialogTitle>
               <DialogDescription className="mt-1 text-zinc-400">
-                The preview stopped while rendering. Open the editor to fix the
-                issue, or close this message to keep browsing.
+                A runtime error occurred while rendering. Dismiss this message to
+                keep browsing, or check the console for details.
               </DialogDescription>
             </div>
           </div>
@@ -158,18 +158,12 @@ function ErrorDialog({
         )}
 
         <DialogFooter className="gap-3 sm:items-center">
-          <span className="text-xs text-zinc-500">
-            Your error details are also available in chat.
-          </span>
-          <a
-            href={`https://freebuff.com/project/${import.meta.env.VITE_VLY_APP_ID}`}
-            target="_blank"
-            rel="noreferrer"
+          <Button
+            onClick={() => setError(null)}
+            className="bg-zinc-100 text-zinc-900 hover:bg-white"
           >
-            <Button className="bg-zinc-100 text-zinc-900 hover:bg-white">
-              <ExternalLink className="h-4 w-4" /> Open editor
-            </Button>
-          </a>
+            Dismiss
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

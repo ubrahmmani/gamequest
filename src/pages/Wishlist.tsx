@@ -22,11 +22,14 @@ export default function WishlistPage() {
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-8">
-        <h1 className="font-pixel text-xl text-magenta text-glow-magenta">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-magenta/10 border border-magenta/20 rounded-full mb-4">
+          <span className="font-pixel text-[7px] text-magenta tracking-wider">SAVED</span>
+        </div>
+        <h1 className="font-pixel text-xl text-foreground text-crt-shift">
           WISHLIST
         </h1>
         <p className="text-sm text-muted-foreground mt-2">
-          Games you've saved for later — your personal collection of favorites
+          Games you've saved for later — your personal collection of favorites.
         </p>
       </div>
 

@@ -97,17 +97,22 @@ function DiscoverPage() {
 
   return (
     <>
-      <div className="relative mb-8 p-6 md:p-10 rounded-xl bg-gradient-to-br from-screen-dark via-surface to-screen-dark border border-border overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-cyan/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-magenta/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+      <div className="relative mb-8 rounded-xl bg-gradient-to-br from-screen-dark via-surface to-screen-dark border border-border overflow-hidden">
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan/30 to-transparent" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-cyan/[0.04] rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-magenta/[0.04] rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
 
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-6">
+        <div className="relative z-10 p-6 md:p-10 flex flex-col md:flex-row md:items-center gap-6">
           <div className="flex-1">
-            <h1 className="font-pixel text-xl md:text-2xl text-cyan text-crt-shift-strong">
-              FIND YOUR NEXT DEAL
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-cyan/10 border border-cyan/20 rounded-full mb-4">
+              <span className="font-pixel text-[7px] text-cyan tracking-wider">DISCOVER</span>
+            </div>
+            <h1 className="font-pixel text-xl md:text-2xl text-foreground text-crt-shift-strong">
+              FIND YOUR NEXT
+              <span className="text-cyan"> DEAL</span>
             </h1>
             <p className="text-sm text-muted-foreground mt-2 max-w-md">
-              Browse games, compare prices across regions, and never miss a bargain.
+              Browse games, compare prices across regions, and discover deals ranked by our Deal Power system.
             </p>
           </div>
           {settings.characters && (
@@ -178,6 +183,7 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-crt-black">
       <header className="sticky top-0 z-30 bg-crt-black/90 backdrop-blur-md border-b border-border">
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan/20 to-transparent" />
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           <div className="flex items-center justify-between h-14">
             <button
@@ -233,28 +239,28 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className="md:hidden border-t border-border">
-          <div className="flex items-center justify-around px-2 py-1">
+        <div className="md:hidden border-t border-border bg-crt-black/95 backdrop-blur-md">
+          <div className="flex items-center justify-around px-1 py-1.5">
             {NAV_ITEMS.map((item) => (
               <button
                 key={item.id}
                 onClick={() => setActivePage(item.id)}
                 className={cn(
-                  "flex flex-col items-center gap-0.5 px-2 py-1.5 rounded-lg text-[9px] transition-colors cursor-pointer",
+                  "flex flex-col items-center gap-0.5 px-2.5 py-1.5 rounded-lg text-[8px] transition-colors cursor-pointer",
                   activePage === item.id
-                    ? "text-cyan"
-                    : "text-muted-foreground",
+                    ? "text-cyan bg-cyan/10"
+                    : "text-muted-foreground hover:text-foreground",
                 )}
               >
                 <item.icon className="w-4 h-4" />
-                {item.label}
+                <span className="font-pixel tracking-wider">{item.label}</span>
               </button>
             ))}
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8">
+      <main className="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8 page-enter">
         <Suspense fallback={<PageLoader />}>
           {activePage === "discover" && <DiscoverPage />}
           {activePage === "wishlist" && <WishlistPage />}

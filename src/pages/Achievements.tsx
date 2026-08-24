@@ -23,7 +23,10 @@ export default function AchievementsPage() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="mb-8">
-        <h1 className="font-pixel text-xl text-gold text-glow-gold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-gold/10 border border-gold/20 rounded-full mb-4">
+          <span className="font-pixel text-[7px] text-gold tracking-wider">PROGRESS</span>
+        </div>
+        <h1 className="font-pixel text-xl text-foreground text-crt-shift">
           ACHIEVEMENTS
         </h1>
         <p className="text-sm text-muted-foreground mt-2">
