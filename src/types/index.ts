@@ -7,6 +7,7 @@ export interface Region {
   currencyCode: string;
   currencySymbol: string;
   locale: string;
+  accentColor: string;
 }
 
 export type Genre =
@@ -24,6 +25,7 @@ export type Platform = "PC" | "PlayStation" | "Xbox" | "Switch";
 export interface Game {
   id: string;
   title: string;
+  description?: string;
   genre: Genre;
   platform: Platform;
   imageUrl: string;
@@ -31,6 +33,8 @@ export interface Game {
   storeUrl: string;
   prices: Record<RegionId, RegionalPrice>;
   tags: string[];
+  rating?: number;
+  releaseYear?: number;
 }
 
 export interface RegionalPrice {
@@ -49,6 +53,20 @@ export interface DealScore {
   savingsAmount: number;
 }
 
+// New mascot system
+export type MascotId = "byte" | "pix" | "nova" | "glitch" | "sir-cache" | "bolt";
+
+export type MascotMood =
+  | "idle"
+  | "happy"
+  | "excited"
+  | "thinking"
+  | "sleeping"
+  | "celebrating"
+  | "surprised"
+  | "error";
+
+// Legacy character types kept for compatibility
 export type CharacterId = "loot" | "byte" | "bargain" | "scrappy" | "cache";
 
 export type CharacterState =
@@ -101,3 +119,35 @@ export type GameEventType =
   | "PRICE_DROP"
   | "ACHIEVEMENT"
   | "USER_IDLE";
+
+// Community types
+export type PostType = "DEAL_FIND" | "PRICE_ALERT" | "RECOMMENDATION" | "HOT_TAKE" | "REVIEW";
+
+export interface CommunityPost {
+  id: string;
+  author: string;
+  avatar: string;
+  reputationLevel: number;
+  type: PostType;
+  content: string;
+  gameId?: string;
+  timestamp: string;
+  likes: number;
+  liked: boolean;
+  replies: number;
+  trending?: boolean;
+  featured?: boolean;
+}
+
+// Achievement types
+export type AchievementRarity = "COMMON" | "RARE" | "EPIC" | "LEGENDARY";
+
+export interface Achievement {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  requirement: number;
+  field: string;
+  rarity: AchievementRarity;
+}

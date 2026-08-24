@@ -8,6 +8,7 @@ export const REGIONS: Record<RegionId, Region> = {
     currencyCode: "INR",
     currencySymbol: "₹",
     locale: "en-IN",
+    accentColor: "#00F0FF",
   },
   usa: {
     id: "usa",
@@ -16,6 +17,7 @@ export const REGIONS: Record<RegionId, Region> = {
     currencyCode: "USD",
     currencySymbol: "$",
     locale: "en-US",
+    accentColor: "#65FF72",
   },
   uk: {
     id: "uk",
@@ -24,6 +26,7 @@ export const REGIONS: Record<RegionId, Region> = {
     currencyCode: "GBP",
     currencySymbol: "£",
     locale: "en-GB",
+    accentColor: "#FF2BD6",
   },
   japan: {
     id: "japan",
@@ -32,6 +35,7 @@ export const REGIONS: Record<RegionId, Region> = {
     currencyCode: "JPY",
     currencySymbol: "¥",
     locale: "ja-JP",
+    accentColor: "#FFD84D",
   },
   china: {
     id: "china",
@@ -40,6 +44,7 @@ export const REGIONS: Record<RegionId, Region> = {
     currencyCode: "CNY",
     currencySymbol: "¥",
     locale: "zh-CN",
+    accentColor: "#A78BFA",
   },
 };
 
